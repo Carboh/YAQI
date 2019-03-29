@@ -65,6 +65,13 @@ img {
     object-fit: cover;
 }
 
+.card-body {
+    max-width:100%;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
 @keyframes colorize {
     0% {
         -webkit-filter: grayscale(100%);
