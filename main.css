@@ -4,27 +4,27 @@ html {
     -webkit-font-smoothing: antialiased;
 }
 
-body {
-    background: #fff;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
-    color: #545454;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-
-.main{    
-    background: #fff;
+.main {
+    background: #f5f8fa;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
     color: #545454;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.5;
     margin: 0 auto;
-    max-width: 800px;
-    padding: 1em 1em 4em;
+    padding: 0.25em;
+    align-content: center;
 }
+
+body {
+    background: #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+    color: #545454;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
 
 formcenter{
     padding-left: 1em;
