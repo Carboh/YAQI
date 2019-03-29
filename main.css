@@ -73,6 +73,7 @@ p {
     text-overflow:ellipsis;
     overflow:hidden;
     font-size: 14px;
+    font-weight: bold;
 }
 
 @keyframes colorize {
