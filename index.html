@@ -51,7 +51,7 @@
                 //console.log(img)
                 const card = document.createElement('div');
                 card.setAttribute("class", "card");
-                card.setAttribute("style", "1px solid rgba(136, 134, 134, 0.125);margin-bottom: 8px");
+                card.setAttribute("style", "margin-bottom: 8px");
                 const a = document.createElement('a');
                 a.setAttribute("href",imagesource[j][2] );
                 const img = document.createElement('img');
@@ -64,7 +64,7 @@
                 p.setAttribute("class", "card-text");
 
                 img.src = imagesource[j][0]
-                text = imagesource[j][1]+" "
+                text = imagesource[j][1]
                 p.textContent = text
 
                 card_body.appendChild(p);
