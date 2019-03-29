@@ -10,6 +10,7 @@ html {
     color: #545454;
     font-family: "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     line-height: 1.42857143;
+    -webkit-font-smoothing : antialiased
     font-size: 16px;
     margin: 0 auto;
     padding: 0.25em;
