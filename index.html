@@ -18,8 +18,9 @@
     </nav>
 </head>
 
-<body onload="test();">
+<body href="javascript:void(0)" onload="test();">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <div class="main" style="margin: 0 auto;">
         <div class="row" style="margin: 0 auto; width: 99%">
 
@@ -33,99 +34,118 @@
     <script>
         test = function() {
 
-                var url = window.location.href
+            var url = window.location.href
 
-                var pos = url.indexOf("rankingProfile=");
+            var pos = url.indexOf("rankingProfile=");
 
-                if (pos != -1) {
+            if (pos != -1) {
 
-                    var strGet = url.substring(pos);
+                var strGet = url.substring(pos);
 
-                }
+            }
+            
+            
+            var url = "https://script.google.com/macros/s/AKfycbw6skM-HiB1dKu9f_aZaCv6GhCXhKEzrWg3XZjfSPwvBYzuzAUY/exec"
+
+            var request = jQuery.ajax({
+                crossDomain: true,
+                url: url,
+                method: "POST",
+                dataType: "jsonp",
+                jsonp: "callback",
+                data: {
+                    "ranking":strGet
+                },
+                
+                success: function(response) {
+                    var imagesource = JSON.parse(response.result);
+                    
+                    const row = document.getElementsByClassName('row');
+                    var text;
+                    var j
+                    var card_h = 0
+                    var card1_h = 0
+
+                    const col = document.createElement('div');
+                    col.setAttribute("class", "col-sm-6");
+                    col.setAttribute("style", "width: 50%; padding: 8px; margin: 0 auto;");
+
+                    const col1 = document.createElement('div');
+                    col1.setAttribute("class", "col-sm-6");
+                    col1.setAttribute("style", "width: 50%; padding: 8px; margin: 0 auto;");
+
+                    var list = imagesource.items
+                    var listlen = list.length;
+                    console.log(listlen)
+
+                    for (j = 0; j < listlen; j++) {
+                        //console.log(img)
+                        const card = document.createElement('div');
+                        card.setAttribute("class", "card");
+                        card.setAttribute("style", "margin-bottom: 8px");
+                        var card_HH = card.style.height
+                        const a = document.createElement('a');
+                        a.setAttribute("href", list[j].url);
+                        const img = document.createElement('img');
+                        img.setAttribute("class", "card-img-top");
+                        const card_body = document.createElement('div');
+                        card_body.setAttribute("class", "card-body");
+
+                        card_body.setAttribute("style", "padding: 0.3rem;color:#41474c");
+                        const p = document.createElement('p');
+                        p.setAttribute("class", "card-text");
+                        p.setAttribute("style", "margin-bottom: 5px")
+
+                        const p2 = document.createElement('p');
+                        p2.setAttribute("class", "card-text");
+                        p2.setAttribute("style", "float:right");
+                        const img2 = document.createElement('img');
+                        img2.setAttribute("style", "width:13px;height:13px;display:inline;padding-bottom:0.1rem");
+                        img2.src = "https://unixtitan.net/images/clipart-love-clipart-3.png"
+                        const span = document.createElement('span');
+                        span.setAttribute("style", "margin: 0.2rem");
+                        span.textContent = list[j].like
 
 
-                var url = "https://script.google.com/macros/s/AKfycbw6skM-HiB1dKu9f_aZaCv6GhCXhKEzrWg3XZjfSPwvBYzuzAUY/exec"
-
-                var request = jQuery.ajax({
-                            crossDomain: true,
-                            url: url,
-                            method: "POST",
-                            dataType: "jsonp",
-                            jsonp: "callback",
-                            data: {
-                                ranking: strGet,
-                            },
-                            success: function(response) {
-                                var imagesource = JSON.parse(response.result);
 
 
-                                var text;
-                                var j
+                        img.src = list[j].image
+                        text = list[j].text
+                        p.textContent = text
 
-                                const col = document.createElement('div');
-                                col.setAttribute("class", "col-sm-6");
-                                col.setAttribute("style", "width: 50%; padding: 7px; margin: 0 auto;");
+                        card_body.appendChild(p);
+                        card.appendChild(img);
 
-                                const col1 = document.createElement('div');
-                                col1.setAttribute("class", "col-sm-6");
-                                col1.setAttribute("style", "width: 50%; padding: 7px; margin: 0 auto;");
+                        p2.appendChild(img2);
+                        p2.appendChild(span);
+                        card_body.appendChild(p2);
+                        card.appendChild(card_body);
+                        a.appendChild(card);
 
-                                var list = imagesource.items
-                                var listlen = list.length;
-
-                                for (j = 0; j < listlen; j++) {
-                                    //console.log(img)
-                                    const card = document.createElement('div');
-                                    card.setAttribute("class", "card");
-                                    card.setAttribute("style", "border-width:0;margin-bottom: 10px");
-                                    const a = document.createElement('a');
-                                    a.setAttribute("href", list[j].url));
-                                const img = document.createElement('img');
-                                img.setAttribute("class", "card-img-top");
-                                const card_body = document.createElement('div');
-                                card_body.setAttribute("class", "card-body");
-
-                                card_body.setAttribute("style", "padding: 0.5rem;color:#41474c");
-                                const p = document.createElement('p');
-                                p.setAttribute("class", "card-text");
-                                p.setAttribute("style", "margin-bottom: 5px")
-
-                                const p2 = document.createElement('p');
-                                p2.setAttribute("class", "card-text");
-                                p2.setAttribute("style", "float:right");
-                                const img2 = document.createElement('img');
-                                img2.setAttribute("style", "width:13px;height:13px;display:inline;padding-bottom:0.1rem");
-                                img2.src = "https://unixtitan.net/images/clipart-love-clipart-3.png"
-                                const span = document.createElement('span');
-                                span.setAttribute("style", "margin: 0.2rem");
-                                span.textContent = list[j].like
-
-
-
-
-                                img.src = list[j].image
-                                text = list[j].text
-                                p.textContent = text
-
-                                card_body.appendChild(p);
-                                card.appendChild(img);
-
-                                p2.appendChild(img2);
-                                p2.appendChild(span);
-                                card_body.appendChild(p2);
-                                card.appendChild(card_body);
-                                a.appendChild(card);
-                                if ((j % 2) == 0) {
-                                    col.appendChild(a);
-                                } else {
-                                    col1.appendChild(a);
-                                }
-                            }
-                            row[0].appendChild(col);
-                            row[0].appendChild(col1);
-
+                        if ((j % 2) == 0) {
+                            col.appendChild(a);
+                        } else {
+                            col1.appendChild(a);
                         }
+
+
+                    }
+                    row[0].appendChild(col);
+                    row[0].appendChild(col1);
+                }
+            });
+
+
+
+
+        }
+
+        //function ctrlq(e) {
+        //console.log(e.result)
+        //return e.result
+        //}
     </script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
