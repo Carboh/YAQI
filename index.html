@@ -43,8 +43,8 @@
                 var strGet = url.substring(pos);
 
             }
-            
-            
+
+
             var url = "https://script.google.com/macros/s/AKfycbw6skM-HiB1dKu9f_aZaCv6GhCXhKEzrWg3XZjfSPwvBYzuzAUY/exec"
 
             var request = jQuery.ajax({
@@ -54,12 +54,12 @@
                 dataType: "jsonp",
                 jsonp: "callback",
                 data: {
-                    "ranking":strGet
+                    "ranking": strGet
                 },
-                
+
                 success: function(response) {
                     var imagesource = JSON.parse(response.result);
-                    
+
                     const row = document.getElementsByClassName('row');
                     var text;
                     var j
@@ -77,61 +77,71 @@
                     var list = imagesource.items
                     var listlen = list.length;
                     console.log(listlen)
+                    for (z = 0; z < listlen/10; z++) {
+                        for (j = 0; j < 10; j++) {
+                            //console.log(img)
+                            const card = document.createElement('div');
+                            card.setAttribute("class", "card");
+                            card.setAttribute("style", "margin-bottom: 8px");
+                            const center = document.createElement('div');
+                            center.setAttribute("style", "display: flex;justify-content: center;align-items: center;")
+                            const playbutton = document.createElement('img')
+                            playbutton.setAttribute("style", "position: absolute;z-index:100;align-items:center;display:flex;width:48px;height:48px;")
+                            playbutton.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODgiIGhlaWdodD0iODgiIHZpZXdCb3g9IjAgMCA4OCA4OCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgeDE9IjIuMDY2JSIgeTE9Ijk2Ljc1MSUiIHgyPSI5NS42NTklIiB5Mj0iMi45NjklIiBpZD0iYSI+PHN0b3Agc3RvcC1jb2xvcj0iIzZEMDBGNiIgb2Zmc2V0PSIwJSIvPjxzdG9wIHN0b3AtY29sb3I9IiMwMDNBQkMiIG9mZnNldD0iMTAwJSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggZD0iTTEyLjY3NiA3Ny4zNzZjMy45ODMgMy42MDggOC42NjcgNi4yOCAxNC4wMjcgOC4wMTdDMzIuMDc4IDg3LjEyNSAzNy44OSA4OCA0NC4xNjMgODhjNi4xNjQgMCAxMS45MzQtLjg3NSAxNy4yOTYtMi42MDcgMi4xNTQtLjY5NCA0LjE4Ni0xLjU0NyA2LjExNi0yLjU0MyAyLjg4NC0xLjQ5IDUuNTMtMy4zMTIgNy45MTYtNS40NzQgMy45OS0zLjYwNyA3LjA5Ny04LjE4MyA5LjMzLTEzLjcwN0M4Ny4wNSA1OC4xMzYgODguMTY4IDUxLjU4IDg4LjE2OCA0NGMwLTcuNTg2LTEuMTE4LTE0LjE0LTMuMzQ2LTE5LjY3LTIuMjMzLTUuNTMtNS4zNC0xMC4xLTkuMzMtMTMuNzA1LTMuOTg1LTMuNjE3LTguNjYtNi4yODUtMTQuMDMzLTguMDJDNTYuMDk2Ljg3IDUwLjMyNiAwIDQ0LjE2MiAwYy02LjI3MyAwLTEyLjA4NS44NjgtMTcuNDYgMi42MDYtMS43NDMuNTYtMy40MTIgMS4yMzYtNS4wMSAyLjAwNS0zLjMyIDEuNTgzLTYuMzMgMy41NzgtOS4wMTcgNi4wMTVDOC42ODggMTQuMjMgNS41NzggMTguOCAzLjM0NiAyNC4zMyAxLjExNiAyOS44NiAwIDM2LjQxNCAwIDQ0YzAgNy41ODIgMS4xMTcgMTQuMTM3IDMuMzQ2IDE5LjY3IDIuMjMyIDUuNTIzIDUuMzQyIDEwLjEgOS4zMyAxMy43MDZ6IiBmaWxsLW9wYWNpdHk9Ii42NSIgZmlsbD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0zNi43MyA1OWgtLjA2NmMtLjkyIDAtMS42NjQtLjc0Mi0xLjY2NC0xLjY1NlYzMC42NTZjMC0uOTE1Ljc0LTEuNjU2IDEuNjY0LTEuNjU2LjAzIDAgLjA2IDAgLjA5LjAwMi4zOC0uMDczLjc4OC0uMDE0IDEuMTUyLjE5NmwyMi42MjIgMTMuMDZjLjc5OC40NiAxLjA3NSAxLjQ3NC42MTMgMi4yNzYtLjAyMy4wNC0uMDQ4LjA4LS4wNzUuMTE4LS4xMzcuMjctLjM1LjUwMy0uNjMuNjdsLTIyLjQ0IDEzLjQ4NGMtLjM5NS4yNC0uODUuMjk1LTEuMjY1LjE5M3oiIGZpbGw9IiNGRkYiLz48L2c+PC9zdmc+"
+                            var card_HH = card.style.height
+                            const a = document.createElement('a');
+                            a.setAttribute("href", list[z*10+j].url);
+                            const img = document.createElement('img');
+                            img.setAttribute("class", "card-img-top");
+                            const card_body = document.createElement('div');
+                            card_body.setAttribute("class", "card-body");
 
-                    for (j = 0; j < listlen; j++) {
-                        //console.log(img)
-                        const card = document.createElement('div');
-                        card.setAttribute("class", "card");
-                        card.setAttribute("style", "margin-bottom: 8px");
-                        var card_HH = card.style.height
-                        const a = document.createElement('a');
-                        a.setAttribute("href", list[j].url);
-                        const img = document.createElement('img');
-                        img.setAttribute("class", "card-img-top");
-                        const card_body = document.createElement('div');
-                        card_body.setAttribute("class", "card-body");
+                            card_body.setAttribute("style", "padding: 0.3rem;color:#41474c");
+                            const p = document.createElement('p');
+                            p.setAttribute("class", "card-text");
+                            p.setAttribute("style", "margin-bottom: 5px")
 
-                        card_body.setAttribute("style", "padding: 0.3rem;color:#41474c");
-                        const p = document.createElement('p');
-                        p.setAttribute("class", "card-text");
-                        p.setAttribute("style", "margin-bottom: 5px")
-
-                        const p2 = document.createElement('p');
-                        p2.setAttribute("class", "card-text");
-                        p2.setAttribute("style", "float:right");
-                        const img2 = document.createElement('img');
-                        img2.setAttribute("style", "width:13px;height:13px;display:inline;padding-bottom:0.1rem");
-                        img2.src = "https://unixtitan.net/images/clipart-love-clipart-3.png"
-                        const span = document.createElement('span');
-                        span.setAttribute("style", "margin: 0.2rem");
-                        span.textContent = list[j].like
+                            const p2 = document.createElement('p');
+                            p2.setAttribute("class", "card-text");
+                            p2.setAttribute("style", "float:right");
+                            const img2 = document.createElement('img');
+                            img2.setAttribute("style", "width:13px;height:13px;display:inline;padding-bottom:0.1rem");
+                            img2.src = "https://unixtitan.net/images/clipart-love-clipart-3.png"
+                            const span = document.createElement('span');
+                            span.setAttribute("style", "margin: 0.2rem");
+                            span.textContent = list[z*10+j].like
 
 
 
 
-                        img.src = list[j].image
-                        text = list[j].text
-                        p.textContent = text
+                            img.src = list[z*10+j].image
+                            text = list[z*10+j].text
+                            p.textContent = text
 
-                        card_body.appendChild(p);
-                        card.appendChild(img);
+                            card_body.appendChild(p);
+                            card.appendChild(center)
+                            center.appendChild(img);
+                            var type = list[z*10+j].type
+                            if (type == "videos") {
+                                center.appendChild(playbutton);
+                            }
+                            p2.appendChild(img2);
+                            p2.appendChild(span);
+                            card_body.appendChild(p2);
+                            card.appendChild(card_body);
+                            a.appendChild(card);
 
-                        p2.appendChild(img2);
-                        p2.appendChild(span);
-                        card_body.appendChild(p2);
-                        card.appendChild(card_body);
-                        a.appendChild(card);
+                            if ((j % 2) == 0) {
+                                col.appendChild(a);
+                            } else {
+                                col1.appendChild(a);
+                            }
 
-                        if ((j % 2) == 0) {
-                            col.appendChild(a);
-                        } else {
-                            col1.appendChild(a);
+
                         }
-
-
+                        row[0].appendChild(col);
+                        row[0].appendChild(col1);
                     }
-                    row[0].appendChild(col);
-                    row[0].appendChild(col1);
                 }
             });
 
@@ -140,7 +150,10 @@
 
         }
 
-
+        //function ctrlq(e) {
+        //console.log(e.result)
+        //return e.result
+        //}
     </script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
